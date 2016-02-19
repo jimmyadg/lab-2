@@ -29,7 +29,7 @@ void loop()
             digitalWrite(metronome, HIGH);
             delay(100);
             digitalWrite(metronome, LOW);
-            modulo == 0;
+            modulo = 0;
           }
         }
         delay(8);

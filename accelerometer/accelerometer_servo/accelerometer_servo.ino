@@ -44,6 +44,7 @@ void loop() {
   if(cTime - pTime >= posZ){
     if(AcX>AcY) servo.write(posX);
     else servo.write(posY);
+    pTime = cTime;
   }
  
 }

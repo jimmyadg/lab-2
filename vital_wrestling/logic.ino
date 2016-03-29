@@ -11,28 +11,18 @@ void logic() {
       //        }
       //
 
-      if (val1 == 0 && val2 == 0) {
-        if (limit < 1) { //limit the serial print to print one
-          Serial.println("Press the sensors to start!");
-        }
-
-        limit = 1; //stop the if statement above
-
-        digitalWrite(7, HIGH);
-
-        if (photoVal1 <= 100 && photoVal2 <= 100) caseState++; //move to next case
-
-      } else {
-        digitalWrite(7, LOW);
-        Serial.print("Please calibrate till the blue LED lights up!");
-        Serial.print("Fan 1 =  ");
-        Serial.print(val1);
-        Serial.print("\t");
-        Serial.print("Fan 2 =  ");
-        Serial.print(val2);
-        Serial.println();
+      digitalWrite(7, HIGH);
+      if (limit < 1) { //limit the serial print to print one
+        Serial.println("Press the sensors to start!");
+        lcd.clear();
+        lcd.print("Press the sensor");
+        lcd.setCursor(0, 1);
+        lcd.print("to start!");
       }
 
+      limit = 1; //stop the if statement above
+
+      if (photoVal1 <= 100 && photoVal2 <= 100) caseState++; //move to next case
 
       break;
 
@@ -78,6 +68,15 @@ void logic() {
       Serial.print("2 =  ");
       Serial.print(fadeLevel2);
       Serial.println();
+      lcd.clear();
+      lcd.setCursor(2, 0);
+      lcd.print("P2");
+      lcd.setCursor(12, 0);
+      lcd.print("P1");
+      lcd.setCursor(2, 1);
+      lcd.print(fadeLevel2);
+      lcd.setCursor(12, 1);
+      lcd.print(fadeLevel1);
 
       break;
 
@@ -85,11 +84,19 @@ void logic() {
       if (winner == 1) {
 
         Serial.println("Player one wins!");
+        lcd.clear();
+        lcd.print("Player one");
+        lcd.setCursor(0, 1);
+        lcd.print("wins!");
         winTone();
 
       } else {
 
         Serial.println("Player two wins");
+        lcd.clear();
+        lcd.print("Player two");
+        lcd.setCursor(0, 1);
+        lcd.print("wins!");
         winTone();
 
       }
@@ -100,7 +107,13 @@ void logic() {
       break;
 
     case 4:
-      if (limit < 1)Serial.println("Press the sensors to restart");
+      if (limit < 1) {
+        Serial.println("Press the sensors to restart");
+        lcd.clear();
+        lcd.print("Press the sensor");
+        lcd.setCursor(0, 1);
+        lcd.print("to restart!");
+      }
       limit = 1;
 
       if (photoVal1 <= 100 && photoVal2 <= 100) reset();

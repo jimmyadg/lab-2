@@ -1,5 +1,9 @@
 //#include <Servo.h>
 
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
 #define LED1 10
 #define LED2 6
 #define Blue 13
@@ -22,6 +26,7 @@ void setup() {
   //servo.attach(5);
   analogWrite(FAN1, 0);
   analogWrite(FAN2, 0);
+  lcd.begin(16,2);
   Serial.begin(9600);
 
 }
@@ -31,6 +36,6 @@ void loop() {
   val1 = analogRead(FAN1); //analog read fan1
   val2 = analogRead(FAN2); //analog read fan2
   logic();
-  //debug();
+  debug();
 
 }

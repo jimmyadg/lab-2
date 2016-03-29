@@ -11,7 +11,7 @@ void logic() {
       //        }
       //
 
-      digitalWrite(7, HIGH);
+      digitalWrite(Blue, HIGH);
       if (limit < 1) { //limit the serial print to print one
         Serial.println("Press the sensors to start!");
         lcd.clear();
@@ -82,7 +82,8 @@ void logic() {
 
     case 3:
       if (winner == 1) {
-
+        
+        analogWrite(LED1, 255);
         Serial.println("Player one wins!");
         lcd.clear();
         lcd.print("Player one");
@@ -91,6 +92,8 @@ void logic() {
         winTone();
 
       } else {
+
+        analogWrite(LED2, 255);
 
         Serial.println("Player two wins");
         lcd.clear();
